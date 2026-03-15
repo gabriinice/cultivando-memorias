@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cultivando Memórias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --verde-escuro: #2d5a27;
+      --verde-medio: #4a8c3f;
+      --verde-claro: #7ab648;
+      --verde-menta: #a8d5a2;
+      --terra: #8b5e3c;
+      --terra-claro: #c49a6c;
+      --creme: #fdf6e3;
+      --creme-escuro: #f5ead0;
+      --branco: #ffffff;
+      --cinza-texto: #3a3a3a;
+      --cinza-suave: #f8f4ee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--creme);
+      color: var(--cinza-texto);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(45, 90, 39, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--creme);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--verde-menta);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--branco);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 6rem;
+      background: var(--verde-escuro);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(168, 213, 162, 0.2);
+      border: 1px solid var(--verde-menta);
+      color: var(--verde-menta);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      color: var(--creme);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      color: var(--verde-menta);
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      color: rgba(253, 246, 227, 0.7);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--verde-claro);
+      color: var(--branco);
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(122, 182, 72, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--verde-medio);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(122, 182, 72, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--verde-menta);
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--verde-menta);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(168, 213, 162, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--verde-escuro) 0%, transparent 30%);
+    }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--verde-medio);
+      padding: 2.5rem 6rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      color: var(--branco);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--verde-escuro);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-desc {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 650px;
+    }
+
+    /* ── SOBRE ── */
+    .sobre {
+      background: var(--branco);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+
+    .sobre-card {
+      background: var(--verde-escuro);
+      border-radius: 20px;
+      padding: 3rem;
+      color: var(--creme);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-card::before {
+      content: '🌱';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.08;
+      right: -10px;
+      bottom: -10px;
+    }
+
+    .sobre-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--verde-menta);
+    }
+
+    .ods-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(122, 182, 72, 0.2);
+      border: 1px solid var(--verde-claro);
+      color: var(--verde-menta);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sobre-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .sobre-list li::before {
+      content: '✦';
+      color: var(--verde-claro);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── MURAL ── */
+    .mural {
+      background: var(--creme-escuro);
+    }
+
+    .mural-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .mural-intro {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .mural-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--verde-escuro);
+      color: var(--verde-menta);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+    }
+
+    .questions-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .question-block {
+      background: var(--branco);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    }
+
+    .question-header {
+      background: var(--verde-escuro);
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .question-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .question-text {
+      font-family: 'Playfair Display', serif;
+      color: var(--creme);
+      font-size: 1.15rem;
+      line-height: 1.4;
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: #e8e0d0;
+    }
+
+    .answer-card {
+      background: var(--branco);
+      padding: 1.8rem 2rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .answer-card:hover {
+      background: var(--creme);
+    }
+
+    .answer-quote {
+      font-size: 3rem;
+      color: var(--verde-menta);
+      font-family: Georgia, serif;
+      line-height: 0.5;
+      display: block;
+      margin-bottom: 0.8rem;
+      opacity: 0.6;
+    }
+
+    .answer-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--cinza-texto);
+      font-style: italic;
+    }
+
+    /* ── EQUIPE ── */
+    .equipe {
+      background: var(--branco);
+      text-align: center;
+    }
+
+    .equipe-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .equipe-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .membro-card {
+      background: var(--creme);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      flex: 0 0 auto;
+      min-width: 200px;
+      border: 1px solid #e8dfc8;
+      transition: all 0.3s;
+    }
+
+    .membro-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(45, 90, 39, 0.12);
+      border-color: var(--verde-menta);
+    }
+
+    .membro-avatar {
+      width: 56px;
+      height: 56px;
+      background: var(--verde-escuro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--verde-menta);
+      font-family: 'Playfair Display', serif;
+      margin: 0 auto 1rem;
+    }
+
+    .membro-nome {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--verde-escuro);
+      line-height: 1.3;
+    }
+
+    .membro-curso {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* ── FOTOS ── */
+    .fotos {
+      background: var(--cinza-suave);
+    }
+
+    .fotos-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .fotos-placeholder {
+      background: var(--branco);
+      border: 2px dashed var(--verde-menta);
+      border-radius: 20px;
+      padding: 5rem 3rem;
+      text-align: center;
+      color: #aaa;
+    }
+
+    .fotos-placeholder .icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    .fotos-placeholder p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .foto-slot {
+      background: var(--branco);
+      border-radius: 16px;
+      aspect-ratio: 4/3;
+      border: 2px dashed #d0c8b8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 0.85rem;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .foto-slot .slot-icon {
+      font-size: 2rem;
+      opacity: 0.4;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--verde-escuro);
+      margin: 3rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gallery-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #d0c8b8;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      background: #e8e0d0;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(45, 90, 39, 0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      background: rgba(45, 90, 39, 0.25);
+    }
+
+    .gallery-item-overlay span {
+      color: white;
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-item-overlay span {
+      opacity: 1;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      line-height: 1;
+    }
+
+    #lightbox-close:hover { opacity: 1; }
+
+    #lightbox-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .lb-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 8px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .lb-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    #lightbox-counter {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--verde-escuro);
+      color: rgba(253, 246, 227, 0.7);
+      padding: 3rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--creme);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    .footer-heading {
+      color: var(--verde-menta);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .footer-bottom {
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 1rem;
+      color: rgba(253, 246, 227, 0.4);
+      font-size: 0.8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      .hero-text { padding: 4rem 2rem; }
+      .sobre { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      section { padding: 4rem 2rem; }
+      .stats-bar { padding: 2rem; }
+      .stat-divider { display: none; }
+      footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    Cultivando Memórias
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">O Projeto</a></li>
+    <li><a href="#mural">Mural de Vozes</a></li>
+    <li><a href="#fotos">Galeria</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-text">
+    <div class="hero-badge">Projeto Integrador · Vila Dignidade · Limeira/SP</div>
+    <h1 class="hero-title">
+      Cultivando <em>Memórias</em>,<br>
+      colhendo histórias
+    </h1>
+    <p class="hero-subtitle">
+      Uma horta comunitária feita de afeto, tradição e convivência, onde cada semente plantada carrega a memória de quem um dia cuidou da terra com as próprias mãos.
+    </p>
+    <div class="hero-cta">
+      <a href="#mural" class="btn-primary">Ver o Mural de Vozes</a>
+      <a href="#sobre" class="btn-secondary">Conhecer o projeto</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="imagem para site.png" alt="Horta comunitária da Vila Dignidade" />
+    <div class="hero-image-overlay"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-number">15+</span>
+    <span class="stat-label">idosos beneficiados</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-number">10</span>
+    <span class="stat-label">estudantes envolvidos</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-number">4</span>
+    <span class="stat-label">áreas do conhecimento</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-number">PET</span>
+    <span class="stat-label">vasos de garrafa PET</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-content">
+    <p class="section-label">O Projeto</p>
+    <h2 class="section-title">Uma horta que é muito mais do que uma horta</h2>
+    <p class="section-desc">
+      A <strong>Vila Dignidade</strong> é um programa habitacional do Governo do Estado de São Paulo para idosos de baixa renda. Nosso projeto chegou para transformar o espaço em um lugar de convivência, memória afetiva e sustentabilidade.
+    </p>
+    <br>
+    <p class="section-desc">
+      Por meio de uma horta comunitária feita com garrafas PET recicladas, unimos alunos de TADS, Nutrição, Psicologia e Arquitetura para oferecer muito mais do que plantas: oferecemos escuta, pertencimento e novos laços.
+    </p>
+  </div>
+  <div class="sobre-visual">
+    <div class="sobre-card">
+      <div class="ods-badge">ODS 3 · Boa Saúde e Bem-Estar</div>
+      <p class="sobre-card-title">O que fazemos</p>
+      <ul class="sobre-list">
+        <li>Horta comunitária com canteiros em garrafas PET, adaptados para idosos com mobilidade reduzida</li>
+        <li>Rodas de conversa e coleta de memórias afetivas ligadas à culinária e ao cultivo</li>
+        <li>Registro digital das histórias de vida para preservação da memória cultural</li>
+        <li>Parcerias com universidades para apoio continuado de voluntários</li>
+        <li>Oficinas de culinária afetiva conectando as plantas colhidas às receitas de família</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MURAL -->
+<section class="mural" id="mural">
+  <div class="mural-header">
+    <p class="section-label">Mural de Vozes</p>
+    <h2 class="section-title">As histórias que a horta desperta</h2>
+    <p class="mural-intro">
+      No dia 12 de março de 2026, visitamos a Vila Dignidade para a atividade da horta. Enquanto as mãos trabalhavam a terra, as memórias floresceram. Estes são os relatos que ouvimos, na voz de quem mais importa.
+    </p>
+    <div class="mural-date">Atividade realizada em 12 de março de 2026</div>
+  </div>
+
+  <div class="questions-grid">
+
+    <!-- Q1 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você tem alguma comida ou receita que te lembra da sua infância?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Arroz, feijão e mandioca, feitos pela minha mãe.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">O bolo de fubá da minha vó — a casa toda ficava com cheiro antes do café.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Minha mãe fazia pamonha com a minha avó. Lembro delas em todos os processos, e sempre adicionávamos queijo ou manteiga para comer.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Qualquer comida da minha vó — o tempero era o melhor de todos. Vou usar a salsa para fazer algumas receitas.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu adorava comer frutas com os meus pais. Espero conseguir fazer os morangos crescerem bem.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você gostava de ajudar na cozinha quando era criança?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu sempre ajudava minha mãe na cozinha — nos finais de semana nos reuníamos com a família e cozinhávamos o almoço para todos com minha vó e minhas tias.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Adorava cozinhar com a minha vó. Foi com ela que aprendi a fazer o bolo de mandioca que meus netos amam.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Ajudar eu não ajudava — agora ficar beliscando as comidas que minha mãe fazia, isso eu fazia toda hora!</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Lembro de ajudar principalmente quando chovia e nós fazíamos bolinho de chuva. É algo que sempre tentei reproduzir com meus filhos e netos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você gosta de cozinhar? Qual prato você mais gosta de fazer?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sim, sempre tento usar ingredientes frescos. Gosto de fazer salgados: tortas, empadas, massas.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">O clássico arroz e feijão. O segredo é colocar uma folha de louro ou extrato de tomate no feijão.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Modéstia parte, mas o meu bolo de cenoura não tem igual. Meus netos são completamente apaixonados — sempre que nos encontramos eles pedem o bolo da vovó com bastante calda de chocolate.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu não sei cozinhar nada, porém minha mulher sabe. Eu tento ajudar sempre que possível e posso afirmar que as refeições dela são as melhores.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Tem alguma receita que você aprendeu com alguém especial?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">O bolo de mandioca da minha vó — foi uma das primeiras coisas que aprendi na cozinha.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Lembro da minha mãe insistindo em me ensinar as bolachas que ela fazia. Fui me esforçar para aprender quando tive meu primeiro filho.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sim, praticamente tudo que sei fazer — minha mãe e minha vó me ensinaram muito. Falavam que eu precisava ser uma mulher prendada para arrumar um marido.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você já ensinou alguma receita para seus filhos, netos ou outras pessoas?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu fiz um livro de receitas para passar para os meus sucessores — sempre tentei fazer algumas das receitas dos livros com eles.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sim, ensinei meu filho a cozinhar o básico, para ele conseguir ir morar sozinho e não ficar comprando comida na rua.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você lembra de algum momento especial que aconteceu enquanto cozinhava?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Lembro dos finais de semana que me reunia com a minha família — ficávamos contando histórias e fazendo a comida. Era tão divertido, todos se ajudando e rindo juntos.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Comer e cozinhar são momentos importantes e devem ser valorizados. Às vezes não tinham muito, porém sempre conseguíamos receber mais alguém para comer — era só colocar mais água no feijão e o resto a gente se virava.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Lembro da minha adolescência, quando me reunia com os meus amigos para cozinhar. Tentávamos fazer coisas diferentes — o mais marcante foi quando queimamos o macarrão. Não ficou bom, só que lembro de ficarmos rindo da situação.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Vocês que já plantaram têm dicas para quem não tem experiência?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Guardem as cascas de ovos, deixem no sol para secar e depois batam no liquidificador. Fica ótimo para colocar nas plantas.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu recomendo colocar a borra do café nas plantas — parece estranho, porém funciona e ajuda muito nas plantinhas.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">O clássico — qualquer fruta que como, entero as cascas nas plantas. É um ótimo adubo e às vezes acabam crescendo mudas de plantas frutíferas.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Às vezes buscamos esterco de cavalo aqui atrás — como tem um terreno vazio, o pessoal costuma deixar cavalos lá. Aproveitamos para adubar tudo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Tem algum tempero ou erva que não pode faltar na sua comida?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Alho, cheiro-verde, cebola, pimenta do reino, cominho.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu adoro páprica, açafrão, salsa, louro.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Orégano, pimenta do reino, tempero baiano, alecrim.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Se você pudesse ensinar uma receita para as pessoas mais jovens, qual seria?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Cueca virada! Adoro fazer para tomar com um café de tarde — é super rapidinho, uns 40 minutos e tá pronto.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">A torta de frango que eu sempre faço no final do ano — virou tradição na família. Ensinei meus filhos e netos.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Um clássico para o café da tarde: bolinho de chuva, nesse clima de agora então! O segredo é colocar um pouco de baunilha e depois de frito passar açúcar e canela.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você já plantou alguma outra vez ou já cuidou de alguma horta?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sim, plantei romã aqui na frente de casa na Vila — na última colheita deram 9!</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Já plantei pitaya — elas começaram a florescer agora.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Não, porém sempre quis tentar plantar algo. Vamos ver se tenho a mesma habilidade que alguns aqui que sabem cuidar.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sim, usei o quintal da casa aqui para fazer uma horta. Fico feliz por vocês terem dado a terra que sobrou da atividade — vai ajudar na minha horta, e vou cuidar bem das hortinhas de vocês.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="question-block">
+      <div class="question-header">
+        <p class="question-text">Você acredita que vai usar esses alimentos que estamos plantando hoje? Qual a primeira receita que pensa em fazer?</p>
+      </div>
+      <div class="answers-grid">
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Sem dúvida! Sempre usei bastante salsa, gosto de usá-la fresca — só que nunca tentei plantar. Vou tentar fazer as sementes vingarem para fazer salsicha com molho temperado com a salsa.</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Eu sou apaixonada por tomatinho cereja com queijo — quem sabe na próxima vez que vocês passarem aqui eu já tenha como fazer com esses que plantamos!</p>
+        </div>
+        <div class="answer-card">
+          <span class="answer-quote">"</span>
+          <p class="answer-text">Minha neta adora morangos — escolhi plantá-los por conta dela. Penso em comê-los puros com ela ou fazer uma vitamina para nós.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOTOS -->
+<section class="fotos" id="fotos">
+  <div class="fotos-header">
+    <p class="section-label">Galeria</p>
+    <h2 class="section-title">Construindo juntos, colhendo memórias</h2>
+  </div>
+
+  <!-- Subgaleria 1: Alunos -->
+  <h3 class="gallery-section-title">Alunos montando o projeto</h3>
+  <div class="gallery-grid" id="gallery-alunos">
+    <div class="gallery-item" onclick="openLightbox('alunos', 0)">
+      <img src="Alunos montando o projeto/WhatsApp Image 20216-03-15 at 18.32.39.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 1)">
+      <img src="Alunos montando o projeto/WhatsApp Image 20223436-03-15 at 18.32.42.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 2)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2022346-03-15 at 18.32.40.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 3)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2023426-03-15 at 18.32.42.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 4)">
+      <img src="Alunos montando o projeto/WhatsApp Image 20236-03-15 at 18.32.40.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 5)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.23432.43.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 6)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.312.39.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 7)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32.1231344.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 8)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32.39.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 9)">
+      <img src="Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32123143.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 10)">
+      <img src="Alunos montando o projeto/WhatsApp Image 20262-03-15 at 18.32.40.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 11)">
+      <img src="Alunos montando o projeto/WhatsApp Image 20262332-03-15 at 18.32.43.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 12)">
+      <img src="Alunos montando o projeto/WhatsApp Image 202624-03-15 at 18.32.40.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 13)">
+      <img src="Alunos montando o projeto/WhatsApp Image 21026-03-15 at 18.32.39.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('alunos', 14)">
+      <img src="Alunos montando o projeto/WhatsApp Image 22343026-03-15 at 18.32.41.jpeg" alt="Alunos montando o projeto" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+  </div>
+
+  <!-- Subgaleria 2: Idosos -->
+  <h3 class="gallery-section-title">Idosos com a horta</h3>
+  <div class="gallery-grid" id="gallery-idosos">
+    <div class="gallery-item" onclick="openLightbox('idosos', 0)">
+      <img src="idosos com horta/WhatsApp Image 120216-03-15 at 18.31.59.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 1)">
+      <img src="idosos com horta/WhatsApp Image 20216-03-15 at 18.31.58.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 2)">
+      <img src="idosos com horta/WhatsApp Image 20216-03-15 at 18.31.59.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 3)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-115 at 18.31.58.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 4)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.254.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 5)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.512.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 6)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.518.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 7)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.52.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 8)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.523.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 9)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.53.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 10)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.571.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 11)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.31.581.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 12)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 18.311.55.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 13)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-15 at 182.31.53.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 14)">
+      <img src="idosos com horta/WhatsApp Image 2026-03-151 at 18.31.56.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 15)">
+      <img src="idosos com horta/WhatsApp Image 2026-103-15 at 18.31.57.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 16)">
+      <img src="idosos com horta/WhatsApp Image 2026-103-15 at 18.31.58.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 17)">
+      <img src="idosos com horta/WhatsApp Image 20261-03-15 at 18.31.57.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('idosos', 18)">
+      <img src="idosos com horta/WhatsApp Image 20261-03-15 at 18.31.58.jpeg" alt="Idosos com a horta" loading="lazy" />
+      <div class="gallery-item-overlay"><span>⊕</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightboxOutside(event)">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+  <div id="lightbox-nav">
+    <button class="lb-btn" onclick="lbPrev()">← Anterior</button>
+    <button class="lb-btn" onclick="lbNext()">Próxima →</button>
+  </div>
+  <span id="lightbox-counter"></span>
+</div>
+
+<!-- EQUIPE -->
+<section class="equipe" id="equipe">
+  <div class="equipe-header">
+    <p class="section-label">Quem faz acontecer</p>
+    <h2 class="section-title">A equipe do projeto</h2>
+  </div>
+  <div class="equipe-grid">
+    <div class="membro-card">
+      <div class="membro-avatar">M</div>
+      <p class="membro-nome">Moises Henrique<br>de Souza Miranda</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">M</div>
+      <p class="membro-nome">Mariana Giovana<br>Sanchez Silva</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">G</div>
+      <p class="membro-nome">Guilherme Marson<br>Crepaldi</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">V</div>
+      <p class="membro-nome">Vitoria Larissa<br>Assis Fonseca de Oliveira</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">J</div>
+      <p class="membro-nome">Julia Marini<br>Fischer</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">V</div>
+      <p class="membro-nome">Vitoria Berti<br>Grippa</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">A</div>
+      <p class="membro-nome">Ana Claudia<br>Ferreira de Moura</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">G</div>
+      <p class="membro-nome">Giovanna Bombonatto<br>dos Santos</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">M</div>
+      <p class="membro-nome">Murilo Fischer</p>
+    </div>
+    <div class="membro-card">
+      <div class="membro-avatar">G</div>
+      <p class="membro-nome">Gabriella Mendes<br>de Ponte</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Cultivando Memórias</div>
+    <p class="footer-desc">
+      Projeto Integrador/Extensão I e II — Comunitário<br>
+      Vila Dignidade · Limeira/SP<br>
+      ODS 3 · Boa Saúde e Bem-Estar
+    </p>
+  </div>
+  <div>
+    <p class="footer-heading">Localização</p>
+    <ul class="footer-list">
+      <li>Vila Dignidade</li>
+      <li>Rua João Franco de Moraes, 610</li>
+      <li>Parque Nossa Senhora das Dores</li>
+      <li>Limeira – SP</li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-heading">Links</p>
+    <ul class="footer-list">
+      <li>@viladignidade</li>
+      <li>Projeto Integrador 25/2 – 26/1</li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2026 Cultivando Memórias · cultivandomemorias.orbees.com.br
+</div>
+
+<script>
+  const galleries = {
+    alunos: [
+      "Alunos montando o projeto/WhatsApp Image 20216-03-15 at 18.32.39.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 20223436-03-15 at 18.32.42.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2022346-03-15 at 18.32.40.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2023426-03-15 at 18.32.42.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 20236-03-15 at 18.32.40.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.23432.43.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.312.39.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32.1231344.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32.39.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 2026-03-15 at 18.32123143.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 20262-03-15 at 18.32.40.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 20262332-03-15 at 18.32.43.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 202624-03-15 at 18.32.40.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 21026-03-15 at 18.32.39.jpeg",
+      "Alunos montando o projeto/WhatsApp Image 22343026-03-15 at 18.32.41.jpeg"
+    ],
+    idosos: [
+      "idosos com horta/WhatsApp Image 120216-03-15 at 18.31.59.jpeg",
+      "idosos com horta/WhatsApp Image 20216-03-15 at 18.31.58.jpeg",
+      "idosos com horta/WhatsApp Image 20216-03-15 at 18.31.59.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-115 at 18.31.58.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.254.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.512.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.518.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.52.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.523.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.53.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.571.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.31.581.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 18.311.55.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-15 at 182.31.53.jpeg",
+      "idosos com horta/WhatsApp Image 2026-03-151 at 18.31.56.jpeg",
+      "idosos com horta/WhatsApp Image 2026-103-15 at 18.31.57.jpeg",
+      "idosos com horta/WhatsApp Image 2026-103-15 at 18.31.58.jpeg",
+      "idosos com horta/WhatsApp Image 20261-03-15 at 18.31.57.jpeg",
+      "idosos com horta/WhatsApp Image 20261-03-15 at 18.31.58.jpeg"
+    ]
+  };
+
+  let currentGallery = 'alunos';
+  let currentIndex = 0;
+
+  function openLightbox(gallery, index) {
+    currentGallery = gallery;
+    currentIndex = index;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLightbox() {
+    const imgs = galleries[currentGallery];
+    document.getElementById('lightbox-img').src = imgs[currentIndex];
+    document.getElementById('lightbox-counter').textContent =
+      (currentIndex + 1) + ' / ' + imgs.length;
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function lbNext() {
+    const imgs = galleries[currentGallery];
+    currentIndex = (currentIndex + 1) % imgs.length;
+    renderLightbox();
+  }
+
+  function lbPrev() {
+    const imgs = galleries[currentGallery];
+    currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+    renderLightbox();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'ArrowLeft') lbPrev();
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
