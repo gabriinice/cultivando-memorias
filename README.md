@@ -74,18 +74,18 @@ Moradores: idosos acima de 60 anos, aposentados, que vivem de forma independente
 
 ## Equipe
 
-| Nome | Curso |
-|------|-------|
-| Moises Henrique de Souza Miranda | TADS |
-| Mariana Giovana Sanchez Silva | TADS |
-| Guilherme Marson Crepaldi | TADS |
-| Vitoria Larissa Assis Fonseca de Oliveira | TADS |
-| Julia Marini Fischer | TADS |
-| Vitoria Berti Grippa | TADS |
-| Ana Claudia Ferreira de Moura | TADS |
-| Giovanna Bombonatto dos Santos | TADS |
-| Murilo Fischer | TADS |
-| Gabriella Mendes de Ponte | TADS |
+| Nome | 
+|------|
+| Moises Henrique de Souza Miranda |
+| Mariana Giovana Sanchez Silva |
+| Guilherme Marson Crepaldi |
+| Vitoria Larissa Assis Fonseca de Oliveira | 
+| Julia Marini Fischer | 
+| Vitoria Berti Grippa |
+| Ana Claudia Ferreira de Moura | 
+| Giovanna Bombonatto dos Santos | 
+| Murilo Fischer |
+| Gabriella Mendes de Ponte | 
 
 ---
 
